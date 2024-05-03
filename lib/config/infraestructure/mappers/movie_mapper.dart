@@ -5,16 +5,20 @@ import 'package:cinemapedia/config/domain/entities/movie.dart';
 import 'package:cinemapedia/config/infraestructure/models/moviedb/movie_moviedb.dart';
 
 class MovieMapper {
-  static Movie movieDBToEntity(MovieFromMovieDB moviedb) => Movie(
+   static Movie movieDBToEntity(MovieFromMovieDB moviedb) => Movie(
       adult: moviedb.adult,
-      backdropPath: moviedb.backdropPath,
+      backdropPath: (moviedb.backdropPath!='')
+      ?'https://image.tmdb.org/t/p/w500/${moviedb.backdropPath}'
+      :'https://media.istockphoto.com/id/1481759725/es/foto/error-404-aislado-sobre-fondo-blanco-p%C3%A1gina-no-encontrada.jpg?s=612x612&w=0&k=20&c=Ukt0bZhGrmJQ_xzQ7UsBH5uZx5DP_c4WI5yUmqv6OWM=',
       genreIds: moviedb.genreIds.map((e) => e.toString()).toList(),
       id: moviedb.id,
       originalLanguage: moviedb.originalLanguage,
       originalTitle: moviedb.originalTitle,
       overview: moviedb.overview,
       popularity: moviedb.popularity,
-      posterPath: moviedb.posterPath,
+      posterPath: (moviedb.posterPath!='')
+      ?'https://image.tmdb.org/t/p/w500/${moviedb.posterPath}'
+      :'no-poster',
       releaseDate: moviedb.releaseDate,
       title: moviedb.title,
       video: moviedb.video,
