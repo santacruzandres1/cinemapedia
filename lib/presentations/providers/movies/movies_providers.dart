@@ -9,19 +9,36 @@ return MoviesNotifier(
 );
  });
 
+ final popularMoviesPrvider = StateNotifierProvider<MoviesNotifier, List<Movie>>((ref) {
+  final fetchMoreMovies = ref.watch(movieRepositoryProvider).getPopular;
+  return MoviesNotifier(fetchMoreMovies: fetchMoreMovies);
+ });
+ final upcomingMoviesPrvider = StateNotifierProvider<MoviesNotifier, List<Movie>>((ref) {
+  final fetchMoreMovies = ref.watch(movieRepositoryProvider).getUpcoming;
+  return MoviesNotifier(fetchMoreMovies: fetchMoreMovies);
+ });
+  final topRatedMoviesPrvider = StateNotifierProvider<MoviesNotifier, List<Movie>>((ref) {
+  final fetchMoreMovies = ref.watch(movieRepositoryProvider).getTopRated;
+  return MoviesNotifier(fetchMoreMovies: fetchMoreMovies);
+ });
 typedef MovieCallBack = Future<List<Movie>> Function({int page});
 
 class MoviesNotifier extends StateNotifier<List<Movie>> {  //  <------- EL StateNotifier es simplemente una clase que sirve para manejar este estado --> <List<Movie>>
   MovieCallBack fetchMoreMovies;
   int currentPage = 0;
+  bool isLoading=false;
   MoviesNotifier(
     {required this.fetchMoreMovies}
   ):super([]);
   
-  Future <void> loadNextPage ()async{
+  Future <void> loadNextPage()async{
+    if(isLoading)return;
+    isLoading=true;
   currentPage++;
   final List<Movie> movies = await fetchMoreMovies(page: currentPage) ; 
   state = [...state, ...movies];
+  Future.delayed(const Duration(milliseconds: 800));
+  isLoading=false;
 
 
 //esto va a hacer modificacionnes en el state
