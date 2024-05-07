@@ -28,16 +28,19 @@ class _HomeViewState extends ConsumerState<_HomeView> {
   void initState() {
     super.initState();
     ref.read(nowPlayinMoviesProvider.notifier).loadNextPage();
-    ref.read(popularMoviesPrvider.notifier).loadNextPage();
+    ref.read(popularMoviesProvider.notifier).loadNextPage();
+    ref.read(upcomingMoviesProvider.notifier).loadNextPage();
+    ref.read(topRatedMoviesProvider.notifier).loadNextPage();
   }
 
   @override
   Widget build(BuildContext context) {
     final nowPlayinMovies = ref.watch(nowPlayinMoviesProvider);
     final moviesSlideShow = ref.watch(moviesSlideShowProviders);
-    final popularMovies = ref.watch(popularMoviesPrvider);
-    final upcomingMovies = ref.watch(upcomingMoviesPrvider);
-    final topRatedMovies = ref.watch(topRatedMoviesPrvider);
+    final popularMovies = ref.watch(popularMoviesProvider);
+    final upcomingMovies = ref.watch(upcomingMoviesProvider);
+    final topRatedMovies = ref.watch(topRatedMoviesProvider);
+    // return  const FullScreenLoader();
     return CustomScrollView(slivers: [
       const SliverAppBar(
         title: CustomAppBar(),
@@ -56,7 +59,7 @@ class _HomeViewState extends ConsumerState<_HomeView> {
                   title: 'Populares',
                   // subtitleDate: 'Lun 6/05',
                   loadNextPage: () => ref
-                      .read(popularMoviesPrvider.notifier)
+                      .read(popularMoviesProvider.notifier)
                       .loadNextPage()),
               MoviesHorizontalListView(
                   movies: nowPlayinMovies,
@@ -70,14 +73,14 @@ class _HomeViewState extends ConsumerState<_HomeView> {
                   title: 'Proximamente',
                   subtitleDate: 'Este mes',
                   loadNextPage: () => ref
-                      .read(upcomingMoviesPrvider.notifier)
+                      .read(upcomingMoviesProvider.notifier)
                       .loadNextPage()),
               MoviesHorizontalListView(
                   movies: topRatedMovies,
                   title: 'Mejores Calificadas',
                   subtitleDate: 'De todos los tiempos',
                   loadNextPage: () => ref
-                      .read(topRatedMoviesPrvider.notifier)
+                      .read(topRatedMoviesProvider.notifier)
                       .loadNextPage()),
               const SizedBox(
                 height: 30,

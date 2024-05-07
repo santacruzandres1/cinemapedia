@@ -33,5 +33,10 @@ final MoviesDatasource datasource;
     return datasource.getTopRated(page:page);
     
   }
+  
+  @override
+  Future<Movie> getMovieById(String id) {
+    return datasource.getMovieById(id); 
+  }
 
 }
