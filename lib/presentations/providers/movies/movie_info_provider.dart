@@ -7,11 +7,11 @@ import '../../../config/domain/entities/movie.dart';
 //   return MoviesNotifier(fetchMoreMovies: fetchMoreMovies);
 // });
 
-final movieByIdProvider=StateNotifierProvider<MovieMapNotifier, Map<String, Movie>>((ref) {
+final movieByIdProvider =
+    StateNotifierProvider<MovieMapNotifier, Map<String, Movie>>((ref) {
   final movieById = ref.watch(movieRepositoryProvider).getMovieById;
-  return  MovieMapNotifier(getMovie: movieById);
-} );
-
+  return MovieMapNotifier(getMovie: movieById);
+});
 
 typedef GetMovieCallBack = Future<Movie> Function(String movieId);
 

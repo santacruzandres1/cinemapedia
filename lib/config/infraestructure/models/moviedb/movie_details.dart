@@ -8,7 +8,7 @@ class MovieDbDetails {
     final List<Genre> genres;
     final String homepage;
     final int id;
-    final String imdbId;
+    final String? imdbId;
     final List<String> originCountry;
     final String originalLanguage;
     final String originalTitle;
@@ -36,7 +36,7 @@ class MovieDbDetails {
         required this.genres,
         required this.homepage,
         required this.id,
-        required this.imdbId,
+        this.imdbId,
         required this.originCountry,
         required this.originalLanguage,
         required this.originalTitle,
@@ -133,7 +133,7 @@ class BelongsToCollection {
         id: json["id"],
         name: json["name"],
         posterPath: json["poster_path"],
-        backdropPath: json["backdrop_path"],
+        backdropPath: json["backdrop_path"]??'',
     );
 
     Map<String, dynamic> toJson() => {
@@ -179,7 +179,7 @@ class ProductionCompany {
 
     factory ProductionCompany.fromJson(Map<String, dynamic> json) => ProductionCompany(
         id: json["id"],
-        logoPath: json["logo_path"],
+        logoPath: json["logo_path"]??'',
         name: json["name"],
         originCountry: json["origin_country"],
     );
