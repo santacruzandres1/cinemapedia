@@ -54,13 +54,7 @@ class _HomeViewState extends ConsumerState<_HomeView> {
               // const CustomAppBar(),
 
               MoviesSlideShow(movies: moviesSlideShow),
-              MoviesHorizontalListView(
-                  movies: popularMovies,
-                  title: 'Populares',
-                  // subtitleDate: 'Lun 6/05',
-                  loadNextPage: () => ref
-                      .read(popularMoviesProvider.notifier)
-                      .loadNextPage()),
+            
               MoviesHorizontalListView(
                   movies: nowPlayinMovies,
                   title: 'En Cines',
@@ -68,13 +62,14 @@ class _HomeViewState extends ConsumerState<_HomeView> {
                   loadNextPage: () => ref
                       .read(nowPlayinMoviesProvider.notifier)
                       .loadNextPage()),
-              MoviesHorizontalListView(
-                  movies: upcomingMovies,
-                  title: 'Proximamente',
-                  subtitleDate: 'Este mes',
+                        MoviesHorizontalListView(
+                  movies: popularMovies,
+                  title: 'Populares',
+                  // subtitleDate: 'Lun 6/05',
                   loadNextPage: () => ref
-                      .read(upcomingMoviesProvider.notifier)
+                      .read(popularMoviesProvider.notifier)
                       .loadNextPage()),
+              
               MoviesHorizontalListView(
                   movies: topRatedMovies,
                   title: 'Mejores Calificadas',
@@ -82,8 +77,15 @@ class _HomeViewState extends ConsumerState<_HomeView> {
                   loadNextPage: () => ref
                       .read(topRatedMoviesProvider.notifier)
                       .loadNextPage()),
+                      MoviesHorizontalListView(
+                  movies: upcomingMovies,
+                  title: 'Proximamente',
+                  subtitleDate: 'Este mes',
+                  loadNextPage: () => ref
+                      .read(upcomingMoviesProvider.notifier)
+                      .loadNextPage()),
               const SizedBox(
-                height: 30,
+                height: 120,
               )
               // Expanded(
               //   child: ListView.builder(
@@ -104,3 +106,4 @@ class _HomeViewState extends ConsumerState<_HomeView> {
     ]);
   }
 }
+  

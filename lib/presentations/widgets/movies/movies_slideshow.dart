@@ -35,12 +35,12 @@ class _Slide extends StatelessWidget {
   final Movie movie;
   final Decoration decoration =
       BoxDecoration(borderRadius: BorderRadius.circular(25), boxShadow: const [
-    BoxShadow(
-      color: Colors.black45,
+    BoxShadow(    
+      color: Colors.black26,
       blurRadius: 10,
       offset: Offset(0, 10),
-    )
-  ]);
+    ),],
+  );
 
   _Slide({required this.movie});
   @override
@@ -55,10 +55,12 @@ class _Slide extends StatelessWidget {
                 loadingBuilder: (context, child, loadingProgress) {
               if (loadingProgress != null) {
                 return const DecoratedBox(
-                  decoration: BoxDecoration(color: Colors.black12),
+                  decoration: BoxDecoration(color: Colors.transparent),
                 );
               }
               return FadeIn(
+                delay: Duration.zero,
+                duration: Duration(milliseconds: 600),
                 child: child,
               );
             }),
