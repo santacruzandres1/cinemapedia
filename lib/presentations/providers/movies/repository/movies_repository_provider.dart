@@ -5,7 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 //_______________Este repositorio es inmutabnle___________solo lectura
 final movieRepositoryProvider = Provider((ref) {
 
-  return MoviesRepositoryImpl(MovieDbDataSource());
+  return MoviesRepositoryImpl( MovieDbDataSource()) ;
   //Aca podriamos cambiar tranquilamente nuestro data source por ejemplo de IMDB
   // return MoviesRepositoryImpl(ImdbDataSource());
   // return MoviesRepositoryImpl(NetflixDataSource());

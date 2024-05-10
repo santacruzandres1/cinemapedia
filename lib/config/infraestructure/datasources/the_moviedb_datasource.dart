@@ -67,4 +67,13 @@ final movie = MovieMapper.movieDetailsToEntity(movieDetails);
 
     return movie;
   }
-}
+  
+  @override
+  Future<List<Movie>> searchMovies(String query) async{
+  final response = await dio.get('/search/movie', queryParameters: {
+      'query': query // esto envia la pagina para seguir cargando
+    });
+
+    return _jsonMovies(response.data);
+  }
+  }

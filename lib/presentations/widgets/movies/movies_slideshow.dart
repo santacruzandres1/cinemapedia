@@ -60,7 +60,7 @@ class _Slide extends StatelessWidget {
               }
               return FadeIn(
                 delay: Duration.zero,
-                duration: Duration(milliseconds: 600),
+                duration: const Duration(milliseconds: 600),
                 child: child,
               );
             }),
