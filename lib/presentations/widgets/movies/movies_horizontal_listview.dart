@@ -110,7 +110,7 @@ class _Slide extends StatelessWidget {
                   return GestureDetector(
                     onTap: () => context.push('/movie/${movie.id}'),
                     child: FadeIn(
-                      duration: const Duration(milliseconds: 1500),
+                      duration: const Duration(milliseconds: 500),
                       child: child,
                     ),
                   );
