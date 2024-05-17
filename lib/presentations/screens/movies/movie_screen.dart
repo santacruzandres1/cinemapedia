@@ -236,16 +236,50 @@ class _CustomSliverAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.sizeOf(context);
     return SliverAppBar(
+      actions: [
+        // IconButton(
+        //     onPressed: () {},
+        //     icon: const Icon(
+        //       Icons.favorite_outline,
+        //       size: 30,
+        //     )),
+        IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.favorite, size: 30),
+            color: Colors.red),
+      ],
       backgroundColor: Colors.black,
       expandedHeight: size.height * 0.7,
       foregroundColor: Colors.white,
       flexibleSpace: FlexibleSpaceBar(
-          titlePadding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-          title: Text(
-            movie.title,
-            style: const TextStyle(fontSize: 20, color: Colors.white),
-            textAlign: TextAlign.start,
+          titlePadding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+          title: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+            child: Text(
+              movie.title,
+              style: const TextStyle(fontSize: 20, color: Colors.white),
+              textAlign: TextAlign.start,
+            ),
           ),
+          // title: Stack(
+          //   alignment: Alignment.bottomLeft,
+          //   children: [
+          //     const _CustomGradient(
+          //       begin: Alignment.topCenter,
+          //       end: Alignment.bottomCenter,
+          //       stops: [0.8, 0.95, 1],
+          //       colors: [Colors.transparent, Colors.black45, Colors.black45],
+          //     ),
+          //       Padding(
+          //         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+          //         child: Text(
+          //         movie.title,
+          //         style: const TextStyle(fontSize: 20, color: Colors.white),
+          //         textAlign: TextAlign.start,
+          //                       ),
+          //       ),
+          //   ],
+          // ),
           background: Stack(
             children: [
               SizedBox.expand(
@@ -260,13 +294,23 @@ class _CustomSliverAppBar extends StatelessWidget {
                   },
                 ),
               ),
-            
+
               const _CustomGradient(
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
-                colors: [Colors.transparent, Colors.black54, Colors.black54],
-                stops: [0.5, 0.65, 1],
+                colors: [Colors.transparent, Colors.black45, Colors.black87],
+                stops: [0.5, 0.7, 1],
               ),
+              const _CustomGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.centerRight,
+                  colors: [Colors.black12, Colors.black12, Colors.transparent],
+                  stops: [0.1, 0.25, 0.3]),
+              const _CustomGradient(
+                  begin: Alignment.topRight,
+                  end: Alignment.centerLeft,
+                  colors: [Colors.black12, Colors.black12, Colors.transparent],
+                  stops: [0.1, 0.25, 0.3]),
               // const _CustomGradient(begin: begin, end: end, colors: colors, stops: stops)
             ],
           )),
@@ -291,14 +335,15 @@ class _CustomGradient extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox.expand(
       child: DecoratedBox(
-          decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: begin,
-          end: end,
-          stops: stops,
-          colors: colors,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: begin,
+            end: end,
+            stops: stops,
+            colors: colors,
+          ),
         ),
-      )),
+      ),
     );
   }
 }
