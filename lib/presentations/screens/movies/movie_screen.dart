@@ -240,7 +240,7 @@ class _CustomSliverAppBar extends ConsumerWidget {
         IconButton(
             onPressed: () {
               ref.watch(localStorageRepositoryProvider)
-              .toggleFavorite(movie);
+              .toggleFavorite(movie); 
             },
             icon: const Icon(
               Icons.favorite_outline,

@@ -13,12 +13,12 @@ return datasource.isMovieFavorite(movieId);
 
   @override
   Future<List<Movie>> loadMovies({int limit = 10, offset = 0}) {
-    return loadMovies(limit: limit, offset: offset);
+    return datasource.loadMovies(limit: limit, offset: offset);
   }
 
   @override
   Future<void> toggleFavorite(Movie movie) {
-      return toggleFavorite(movie) ;
+      return datasource.toggleFavorite(movie) ;
   }
 
 }
