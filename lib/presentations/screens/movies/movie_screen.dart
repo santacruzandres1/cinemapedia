@@ -167,7 +167,7 @@ class _ActorsByMovie extends ConsumerWidget {
                     child: Stack(
                       alignment: Alignment.bottomCenter,
                       children: [
-                        SizedBox(
+                        SizedBox(  
                           child: Image.network(
                             actor.profilePath,
                             fit: BoxFit.cover,
@@ -245,6 +245,8 @@ class _CustomSliverAppBar extends ConsumerWidget {
       final isFavoriteFuture = ref.watch(isFavoitePovider(movie.id));
 
     final size = MediaQuery.sizeOf(context);
+    
+    
     return SliverAppBar(
       actions: [
         IconButton(
