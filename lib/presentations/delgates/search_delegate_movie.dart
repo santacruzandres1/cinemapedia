@@ -117,7 +117,7 @@ void _onQueryChanged( String query ) {
 
   @override
   Widget? buildLeading(BuildContext context) {
-    //Contruyela parte del icono de cinemapedia
+    //Construyela parte del icono de cinemapedia
     return IconButton(
         onPressed: () {
           // context.pop(); //------> en este caso funciona el pop pero dependiendo de los requerimientos de la app vamos a necesitar utilizar em metodo close()

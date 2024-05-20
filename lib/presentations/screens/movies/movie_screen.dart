@@ -250,10 +250,13 @@ class _CustomSliverAppBar extends ConsumerWidget {
     return SliverAppBar(
       actions: [
         IconButton(
-            onPressed: () {
-              ref.watch(localStorageRepositoryProvider)
-              .toggleFavorite(movie); 
+            onPressed: () async{
+              // ref.read(localStorageRepositoryProvider)
+              // .toggleFavorite(movie); 
+              await ref.read(favoritedMoviesProviders.notifier).toggleFavorite(movie);
               ref.invalidate(isFavoitePovider(movie.id));
+
+
             },
             icon: isFavoriteFuture.when(
               data: (isFavorite)=> isFavorite
@@ -315,24 +318,27 @@ class _CustomSliverAppBar extends ConsumerWidget {
                   },
                 ),
               ),
-
-              const _CustomGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [Colors.transparent, Colors.black45, Colors.black87],
-                stops: [0.5, 0.7, 1],
+              const SizedBox.expand(
+                child: DecoratedBox(
+                    decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    stops: [0.7, 1],
+                    colors: [Colors.transparent, Colors.black87],
+                  ),
+                )),
               ),
-              const _CustomGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.centerRight,
-                  colors: [Colors.black12, Colors.black12, Colors.transparent],
-                  stops: [0.1, 0.25, 0.3]),
-              const _CustomGradient(
-                  begin: Alignment.topRight,
-                  end: Alignment.centerLeft,
-                  colors: [Colors.black12, Colors.black12, Colors.transparent],
-                  stops: [0.1, 0.25, 0.3]),
-              // const _CustomGradient(begin: begin, end: end, colors: colors, stops: stops)
+              const SizedBox.expand(
+                child: DecoratedBox(
+                    decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    stops: [0.0, 0.2],
+                    colors: [Colors.black87, Colors.transparent],
+                  ),
+                )),
+              ),
             ],
           )),
     );
