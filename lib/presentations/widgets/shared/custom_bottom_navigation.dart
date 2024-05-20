@@ -24,7 +24,6 @@ class CustomBottomNavigation extends StatelessWidget {
       currentIndex: currentIndex,
       onTap: (value) => onItemTapped(context, value),
       elevation: 0,
-      currentIndex: getCurrentIndex(context),
       items: const [
         BottomNavigationBarItem(icon: Icon(Icons.home_outlined), label: 'Home', activeIcon: Icon(Icons.home_outlined) ),
         BottomNavigationBarItem(icon: Icon(Icons.category_outlined), label: 'Categories', activeIcon: Icon(Icons.category_outlined)),

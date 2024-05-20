@@ -1,6 +1,4 @@
 import 'package:cinemapedia/presentations/screens/screens.dart';
-import 'package:cinemapedia/presentations/vie.ws/views.dart';
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 final appRouter = GoRouter(initialLocation: '/home/0', routes: [
