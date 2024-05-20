@@ -227,13 +227,23 @@ class _ActorsByMovie extends ConsumerWidget {
   }
 }
 
+final isFavoitePovider = FutureProvider.family.autoDispose((ref,int movieId){
+final localStorageRepository = ref.watch(localStorageRepositoryProvider);
+
+return localStorageRepository.isMovieFavorite(movieId); 
+});
+
 class _CustomSliverAppBar extends ConsumerWidget {
   final Movie movie;
+
 
   const _CustomSliverAppBar({required this.movie});
 
   @override
   Widget build(BuildContext context, ref) {
+
+      final isFavoriteFuture = ref.watch(isFavoitePovider(movie.id));
+
     final size = MediaQuery.sizeOf(context);
     return SliverAppBar(
       actions: [
@@ -241,11 +251,21 @@ class _CustomSliverAppBar extends ConsumerWidget {
             onPressed: () {
               ref.watch(localStorageRepositoryProvider)
               .toggleFavorite(movie); 
+              ref.invalidate(isFavoitePovider(movie.id));
             },
-            icon: const Icon(
-              Icons.favorite_outline,
-              size: 30,
-            )),
+            icon: isFavoriteFuture.when(
+              data: (isFavorite)=> isFavorite
+                    ? const Icon(Icons.favorite_rounded, color: Colors.red, size: 30,)
+                    :const Icon(Icons.favorite_outline, color: Colors.white, size: 30,),
+              error: (_, __)=>throw UnimplementedError(), 
+              loading: ()=> const CircularProgressIndicator(strokeWidth: 2,),
+              ),
+            // icon: const Icon(
+            //   Icons.favorite_outline,
+            //   size: 30,
+            // )
+            
+            ),
       ],
       backgroundColor: Colors.black,
       expandedHeight: size.height * 0.7,
